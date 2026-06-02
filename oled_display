@@ -1,24 +1,34 @@
+#include <Arduino.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <Fonts/FreeSans9pt7b.h> 
 
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+#define SCREEN_WIDTH 128 
+#define SCREEN_HEIGHT 64 
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 void setup() {
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
-    for(;;); s
+    for(;;); 
   }
 
   display.clearDisplay();
 
-  display.setTextSize(1.9);      \
+  display.setFont(&FreeSans9pt7b);
+  
+  display.setTextSize(1); 
   display.setTextColor(SSD1306_WHITE); 
-  display.setCursor(0, 0);   
-  display.println(F("elecfest to universe"));
+  
+  display.setCursor(0, 14);             
+  display.println(F("elecfest to"));
+
+  display.setCursor(0, 34); 
+  display.println(F("universe"));
+
+  display.setCursor(0, 54);
   display.println(F("hello!"));
 
   display.display();
